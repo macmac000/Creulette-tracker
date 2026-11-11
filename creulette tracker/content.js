@@ -23,7 +23,7 @@ async function checkRoll(){
     let greenbeauty = 1.3333*g*(1/(1+Math.pow((r+7)/(g/1.4), 3)))*Math.pow(g/125+b/(g+7), 1.5);
     let bluebeauty = 100*Math.cbrt(b/100)*Math.pow(0.8+b/(g+25), 2.5);
     let sbeauty = (r+g+b)*(110+Math.abs(sorted[1]-sorted[2]))/365;
-    let beauty = Math.min([redbeauty, greenbeauty, bluebeauty, sbeauty].reduce((a, b) => a + b) / 5, 30000);
+    let beauty = Math.min([redbeauty, greenbeauty, bluebeauty, sbeauty].reduce((a, b) => a + b) / 5, 30000); //Milo what were you on when you were writing this
 
     chrome.storage.local.get({totalRolls: 0}, function(data) {
         let rollCount = data.totalRolls || 0;
@@ -123,4 +123,4 @@ async function checkRoll(){
         chrome.storage.local.set({ beautyLb: beautyLb, beautyLb: beautyLb });
     })
 }
-setInterval(() => {checkRoll()},250);
+setInterval(() => {checkRoll()},250); //Imagine Milo adds a super fast way to roll and this just stops working if you click quickly enough

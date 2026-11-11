@@ -6,7 +6,7 @@ function getContrastYIQ(hexcolor) {
   const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
   return yiq < 128 ? 'white' : 'black';
 }
-function darkenColor(hexcolor, factor) {
+function darkenColor(hexcolor, factor) { //I know there's probably a better way but I don't care
     hexcolor = hexcolor.replace('#', '');
     let r = parseInt(hexcolor.substr(0, 2), 16);
     let g = parseInt(hexcolor.substr(2, 2), 16);
@@ -28,6 +28,10 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         let header = document.createElement("h1");
         header.innerHTML = "Creulette Tracker";
         document.body.appendChild(header);
+
+        let label = document.createElement("h5");
+        label.innerHTML = "By macmac_0";
+        document.body.appendChild(label);
 
         let modeSelection = document.createElement("select");
         document.body.appendChild(modeSelection);
@@ -70,7 +74,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         modeSelection.appendChild(mode8);
         modeSelection.appendChild(mode10);
         modeSelection.appendChild(mode5);
-        modeSelection.appendChild(mode11);
+        modeSelection.appendChild(mode11); //Don't ask why the order is like that okay?
         
         //basic stats
         let stats = document.createElement("div");
@@ -244,7 +248,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         let uglyRollContainer = document.createElement("div");
         uglyRollContainer.style.fontSize = "13px"
         uglyRollContainer.style.fontWeight = "bold"
-        rollsUgly.appendChild(uglyRollContainer);
+        rollsUgly.appendChild(uglyRollContainer); //I probably could've just made all of this in a loop...
 
         modeSelection.onchange = () => {
             for(const x of document.body.children){
@@ -268,7 +272,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 <span style=\"color: silver;\">Uninteresting: ${rollsPerTier[3]}</span><br>
                 <span style=\"color: white;\">Common: ${rollsPerTier[4]}</span><br>
                 <span style=\"color: lime;\">Uncommon: ${rollsPerTier[5]}</span><br>
-                <span style=\"color: #0080ff;\">Rare: ${rollsPerTier[6]}</span><br>
+                <span style=\"color: #0080ff;\">Rare: ${rollsPerTier[6]}</span><br> 
                 <span style=\"color: magenta; font-size: 13px;\">Epic: ${rollsPerTier[7]}</span><br>
                 <span style=\"color: yellow; font-size: 15px;\">Legendary: ${rollsPerTier[8]}</span><br>
                 <span style=\"color: red; font-size: 18px;\">Mythic: ${rollsPerTier[9]}</span><br>
@@ -469,6 +473,6 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 lbElement.appendChild(chromaLabel);
                 uglyRollContainer.appendChild(lbElement);
             }
-        })
+        }) //I should've just made a function that makes leaderboards, then the code wouldn't be 500 lines
     }
 });
